@@ -1,0 +1,2002 @@
+import java.io.*;//BY SATHYA OF CLASS 10 C
+import java.util.*;
+class Online_Clothes_Shopping
+{
+   double cost=0.0;//initializing the cost as 0
+   double s=100.0;//setting s as 100 as the limit
+   int n=100;//array value n as 100[number of memory blocks]
+   int z=0;//set z as 0,z helps for increasing the array value
+   double disc=0;//to calculate the discount
+   String name[]=new String[n];//array to store names of clothes
+   double price[]=new double[n];//array to store the price of the clothes
+   String size[]=new String[n];//array to store size of the clothing apparel
+    public static void main()throws IOException
+    {
+      InputStreamReader ir=new InputStreamReader(System.in);
+      BufferedReader br=new BufferedReader(ir);
+      Scanner sc=new Scanner(System.in);
+      double Billamt=0.0;//total bill amount
+      double gst=0.0;//to calculate the gst cost
+      double Totalcost=0.0;//to find the total cost after gst
+      String st;//this choice stops or exits the do while loop
+      String name="";//stores customers name
+      int drno=0;//stores door number or flat number
+      String street="";//stores the street address
+      String locality="";//stores locality
+      String lmark="";//stores landmark
+      String city="";//stores city name
+      int pincode=0;//stores the pincode
+      String state="";//stores the name of the state
+      long phno=0L;//stores phone number
+      String p="";//to convert the phone number to a string
+      int l=0;//to store length of phone number,to check if the phone number has 10 digits
+      while(true)//loop runs as long as condition is satisfied,(i.e) until No is entered as the choice
+      {
+          System.out.println("**********************************************************************************************************************");
+          System.out.println("*****************************************WELCOME TO SM10 STORES*******************************************************");
+          System.out.println("**********************************************************************************************************************");
+          System.out.println();
+          System.out.println("THE CLOTHING STORE WHERE YOU WILL FIND ALL YOUR NEEDS FOR CLOTHES AND A LITTLE BIT OF ACCESSORIES ARE FULFILLED!!!!!!!");
+          System.out.println("YOU ARE AT THE RIGHT PLACE FOR SHOPPING!!!!!");
+          System.out.println("WE PROVIDE THE BEST CHOICES FOR SHOPPING!!!!");
+          System.out.println();
+          System.out.println("DETAIL SUBMISSION FORM");
+          System.out.println();
+          System.out.println("ENTER YOUR NAME!");
+          name=br.readLine();
+          System.out.println();
+          System.out.println("YOUR RESIDENTIAL ADDRESS");
+          System.out.println();
+          System.out.println("ENTER YOUR DOOR NUMBER OR FLAT NUMBER");
+          drno=Integer.parseInt(br.readLine());
+          System.out.println();
+          System.out.println("ENTER YOUR STREET(MAIN AND CROSS)");
+          street=br.readLine();
+          System.out.println();
+          System.out.println("ENTER YOUR LOCALITY");
+          locality=br.readLine();
+          System.out.println();
+          System.out.println("ENTER YOUR LANDMARK");
+          lmark=br.readLine();
+          System.out.println();
+          System.out.println("ENTER YOR CITY");
+          city=br.readLine();
+          System.out.println();
+          System.out.println("ENTER YOUR PINCODE");
+          pincode=Integer.parseInt(br.readLine());
+          System.out.println();
+          System.out.println("ENTER YOUR STATE");
+          state=br.readLine();
+          System.out.println();
+          System.out.println("ENTER YOUR PHONE NUMBER");
+          phno=sc.nextLong();
+          p=Long.toString(phno);
+          l=p.length();
+          while(l>10||l<10)//this loop is done to check if the phone number has 10 digits
+          {
+              System.out.println();
+              System.out.println("INVALID PHONE NUMBER, ENTER YOUR PHONE NUMBER WITH 10 DIGITS ONLY!!");
+              System.out.println("ENTER YOUR TEN DIGIT PHONE NUMBER");
+              phno=sc.nextLong();
+              p=Long.toString(phno);
+              l=p.length();
+          }
+          Online_Clothes_Shopping obj=new Online_Clothes_Shopping();//Creating an object of the class Online_Class_Shopping
+          do
+          {
+              System.out.println();
+              System.out.println("WE ALLOW OUR CUSTOMERS TO SHOP CONVENIENTLY AND PROVIDE THEM A WIDE VARIETY OF CHOICES TO CHOOSE FROM!!!");
+              System.out.println("PLEASE ENTER THE SERIAL NUMBERS AS GIVEN-");
+              System.out.println("THE CHOICES ARE-");
+              System.out.println("1. WOMEN'S WEAR");
+              System.out.println("2. MEN'S WEAR");
+              System.out.println("3. MARRIAGE WEAR");
+              System.out.println("4. KIDS WEAR");
+              System.out.println("5. ACCESSORIES");
+              System.out.println("6. SHOES");
+              System.out.println();
+              System.out.println("ENTER YOUR CHOICE!!!!!!!!");
+              int c=sc.nextInt();//entering the choice
+              switch(c)   //using the switch case for users choice
+              {
+                 case 1: obj.Women();//calling function Women
+                 break;
+                 case 2: obj.Men();//calling function Men 
+                 break;
+                 case 3: obj.Marriage();//calling function Marriage
+                 break;
+                 case 4: obj.Kids();//calling function Kids
+                 break;
+                 case 5: obj.Accessories();//calling function Accessories
+                 break;
+                 case 6: obj.Shoes();//calling function Shoes
+                 break;
+                 default:System.out.println("PLEASE CHECK YOUR INPUT");
+                }
+              System.out.println();
+              System.out.println("PLEASE TYPE 'STOP' IF YOU WANT TO STOP SHOPPING");
+              System.out.println("TYPE ANYTHING ELSE IF YOU WANT TO CONTINUE SHOPPING");
+              st=br.readLine();
+          }while(!(st.equalsIgnoreCase("stop")));
+          System.out.println();
+          System.out.println("NAME-"+name);
+          System.out.println();
+          System.out.println("ADDRESS-");
+          System.out.println(drno+","+street+","+locality+","+city+"-"+pincode+","+state);
+          System.out.println();
+          System.out.println("LANDMARK-"+lmark);
+          System.out.println();
+          System.out.println("PHONE NUMBER="+phno);
+          System.out.println();
+          System.out.println("YOUR BILL-");
+          System.out.println("SL.NO\tITEM NAME\t\t\t\tSIZE\t\tCOST OF THE ITEM");
+          for(int i=0;i<obj.z;i++)
+          {
+                System.out.println(i+1+"\t"+obj.name[i]+"\t\t\t\t"+obj.size[i]+"\t\t"+obj.price[i]);
+          }
+          Billamt=obj.cost+Billamt;
+          System.out.println("COST="+Billamt);
+          System.out.println();
+          if(Billamt<1000)
+          {
+            System.out.println();
+            System.out.println("GST RATE FOR CLOTHES AND ACCESORIES OF VALUE LESS THAN RS.1000 IS 5%");
+            System.out.println("CGST=2.5%");
+            System.out.println("SGST=2.5%");
+            System.out.println();
+            gst=5.0/100*Billamt;
+            Totalcost=Billamt+gst;
+          }
+          if(Billamt>1000)
+          {
+            System.out.println();
+            System.out.println("GST RATE FOR CLOTHES AND ACCESORIES OF VALUE GREATER THAN RS.1000 IS 12%");
+            System.out.println("CGST=6%");
+            System.out.println("SGST=6%");
+            System.out.println();
+            gst=12.0/100*Billamt;
+            Totalcost=Billamt+gst;
+          }
+          System.out.println();
+          System.out.println("TOTAL COST TO BE PAID = Rs."+Totalcost);
+          System.out.println();
+          System.out.println("YOUR ORDER WILL BE DELIVERED IN 4 TO 5 BUISNESS DAYS");
+          System.out.println();
+          System.out.println("HOPE YOU ENJOYED SHOPPING!! PLEASE DO COME BACK AND SHOP AGAIN");
+          System.out.println();
+          System.out.println("FOR MORE INFORMATION CALL +91 9945826776 OR 080 26453297");
+          System.out.println();
+          System.out.println("ARE THERE ANY MORE CUSTOMERS?");
+          System.out.println("ENTER'NO'IF THERE ARE NO MORE CUSTOMERS");
+          System.out.println("ENTER ANYTHING ELSE IF MORE CUSTOMERS ARE THERE");
+          String str=br.readLine();
+          if(str.equalsIgnoreCase("no"))
+          {
+              System.exit(0);
+          }
+          else
+          {
+            Billamt=0.0;
+            gst=0.0;
+            Totalcost=0.0;
+          }
+      }
+   }
+   public void Women()throws IOException
+   {
+       InputStreamReader ir=new InputStreamReader(System.in);
+       BufferedReader br=new BufferedReader(ir);
+       Scanner sc=new Scanner(System.in);
+       System.out.println();
+       System.out.println("WELCOME TO WOMEN'S CLOTHING SECTION!!!");
+       System.out.println("WE PROVIDE A WIDE RANGE OF SELECTIONS!!");
+       System.out.println("KINDLY ENTER THE NUMBERS AS GIVEN IN THE LIST-");
+       System.out.println("ENTER-");
+       System.out.println();
+       System.out.println("1. FOR ETHNIC WEAR");
+       System.out.println("2. FOR CASUAL WEAR");
+       System.out.println("3. FOR FORMAL WEAR");
+       System.out.println("4. FOR WESTERN WEAR");
+       System.out.println("5. FOR PARTY WEAR");
+       System.out.println("WE ARE EXTREMELY DELIGHTED TO ANNOUNCE THAT-");
+       System.out.println("WE PROVIDE 15% DISCOUNT IN THE CASUAL WEAR SECTION AND 25% DISCOUNT ON ALL SECTIONS IN THE PARTY WEAR!!");
+       System.out.println("PLEASE ENTER YOUR CHOICE!!");
+       int choice=sc.nextInt();
+       System.out.println();
+       switch(choice)
+       {
+           case 1:
+           System.out.println("THIS IS THE ETHNIC SECTION!!");
+           System.out.println("THE ETHNIC SECTION PROVIDES YOU WITH ITS OWN VATRIETIES.");
+           System.out.println();
+           System.out.println("PLEASE ENTER THE NUMBERS ACCORDING TO YOUR CHOICE-");
+           System.out.println("ENTER-");
+           System.out.println("1. FOR SAREE");
+           System.out.println("2. FOR PATTIYALLAS");
+           System.out.println("3. FOR CHUDDIDHARS");
+           System.out.println("4. FOR SALWAR KAMEEZ");
+           System.out.println("5. FOR KURTIS");
+           System.out.println("6. FOR GHAGRAS");
+           int num=sc.nextInt(); //asking for users choice
+           System.out.println();
+           if(num==1)
+           {
+               name[z]="Saree";
+               price[z]=1500;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.1500");
+               cost=cost+1500;
+           }
+           else
+           if(num==2)
+           {
+               name[z]="Pattiyallas";
+               price[z]=500;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.500");
+               cost=cost+500;
+            }
+           else
+           if(num==3)
+           {
+               name[z]="Chuddidhars";
+               price[z]=800; 
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.800");
+               cost=cost+800;
+            }
+           else
+           if(num==4)
+           {
+               name[z]="Salwar Kameez";
+               price[z]=1200;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.1200");
+               cost=cost+1200;
+           }
+           else
+           if(num==5)
+           {
+               name[z]="Kurtis";
+               price[z]=400;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.400");
+               cost=cost+400;
+            }
+           else
+           if(num==6)
+           {
+               name[z]="Ghagras";
+               price[z]=3000;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.3000");
+               cost=cost+3000;
+            }
+           else
+           System.out.println("PLEASE CHECK YOUR INPUT!");
+           break;
+           case 2:
+           System.out.println("THIS IS THE CASUAL WEAR SECTION AND WE HAVE ALL THE LATEST DESIGNS!!");
+           System.out.println("WE PROVIDE 15% DISCOUNT IN THIS SECTION FOR ALL ITEMS!!!!!!!!!!!!");
+           System.out.println("THE CASUAL WEAR SECTION PROVIDES YOU WITH ITS OWN VATRIETIES.");
+           System.out.println("PLEASE ENTER THE NUMBERS ACCORDING TO YOUR CHOICE-");
+           System.out.println();
+           System.out.println("ENTER-");
+           System.out.println("1. FOR CASUAL PANTS");
+           System.out.println("2. FOR CASUAL SHIRTS");
+           System.out.println("3. FOR CASUAL SKIRTS");
+           System.out.println("4. FOR JACKETS");
+           System.out.println("5. FOR DRESSES");
+           System.out.println("6. FOR CASUAL T-SHIRTS");
+           num=sc.nextInt();//asking for users choice
+           System.out.println();
+           if(num==1)
+           {
+               name[z]="Casual Pants";
+               disc=2000-(0.15*2000);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.2000 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           if(num==2)
+           {
+               name[z]="Casual shirts";
+               disc=1500-(0.15*1500);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.1500 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           if(num==3)
+           {
+               name[z]="Casual Skirts";
+               disc=1200-(0.15*1200);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.1200 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           if(num==4)
+           {
+               name[z]="Jackets";
+               disc=800-(0.15*800);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.800 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           if(num==5)
+           {
+               name[z]="Dresses";
+               disc=1000-(0.15*1000);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.1000 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           if(num==6)
+           {
+               name[z]="Casual Tshirts";
+               disc=1100-(0.15*1000);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.1100 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           System.out.println("PLEASE CHECK YOUR INPUT!");
+           break;
+           case 3:
+           System.out.println("THIS IS THE FORMAL WEAR SECTION!!");
+           System.out.println("THE FORMAL WEAR SECTION PROVIDES YOU WITH ITS OWN VATRIETIES.");
+           System.out.println("PLEASE ENTER THE NUMBERS ACCORDING TO YOUR CHOICE-");
+           System.out.println();
+           System.out.println("ENTER-");
+           System.out.println("1. FOR FORMAL PANTS");
+           System.out.println("2. FOR FORMAL SHIRTS");
+           System.out.println("3. FOR FORMAL TSHIRTS");
+           System.out.println("4. FOR FORMAL SKIRTS");
+           System.out.println("5. FOR FORMAL COATS");
+           num=sc.nextInt(); //asking for users choice
+           System.out.println();
+           if(num==1)
+           {
+               name[z]="Formal Pants";
+               price[z]=1000;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.1500");
+               cost=cost+1000;
+           }
+           else
+           if(num==2)
+           {
+               name[z]="Formal Shirts";
+               price[z]=600;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.600");
+               cost=cost+600;
+            }
+           else
+           if(num==3)
+           {
+               name[z]="Formal Tshirts";
+               price[z]=800;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.800");
+               cost=cost+800;
+            }
+           else
+           if(num==4)
+           {
+               name[z]="Formal Skirts";
+               price[z]=700;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.700");
+               cost=cost+700;
+           }
+           if(num==5)
+           {
+               name[z]="Formal Coats";
+               price[z]=1200;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.1200");
+               cost=cost+1200;
+           }
+           else
+           System.out.println("PLEASE CHECK YOUR INPUT!");
+           break;
+           case 4:
+           System.out.println("THIS IS THE WESTERN WEAR SECTION AND WE HAVE ALL THE LATEST DESIGNS!!");
+           System.out.println("WE PROVIDE 25% DISCOUNT IN THIS SECTION FOR ALL ITEMS!!!!!!!!!!!!");
+           System.out.println("THE WESTERN WEAR SECTION PROVIDES YOU WITH ITS OWN VATRIETIES.");
+           System.out.println("PLEASE ENTER THE NUMBERS ACCORDING TO YOUR CHOICE-");
+           System.out.println();
+           System.out.println("ENTER-");
+           System.out.println("1. FOR DENIM JEANS");
+           System.out.println("2. FOR SLEVELESS TOPS");
+           System.out.println("3. FOR HALTER TOPS");
+           System.out.println("4. FOR FULL SLEEVES TOPS");
+           num=sc.nextInt(); //asking for users choice
+           System.out.println();
+           if(num==1)
+           {
+               name[z]="Denim Jeans";
+               disc=2500-(0.25*2500);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.2500 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           if(num==2)
+           {
+               name[z]="Sleeveless Tops";
+               disc=1700-(0.25*1700);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.1700 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           if(num==3)
+           {
+               name[z]="Halter Tops";
+               disc=1400-(0.25*1400);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.1400 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           if(num==4)
+           {
+               name[z]="Full sleeves Tops";
+               disc=1000-(0.25*1000);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.1000 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           System.out.println("PLEASE CHECK YOUR INPUT!");
+           break;
+           case 5:
+           System.out.println("THIS IS THE PARTY WEAR SECTION AND WE HAVE ALL THE LATEST DESIGNS!!");
+           System.out.println("WE PROVIDE 25% DISCOUNT IN THIS SECTION FOR ALL ITEMS!!!!!!!!!!!!");
+           System.out.println("THE PARTY SECTION PROVIDES YOU WITH ITS OWN VATRIETIES.");
+           System.out.println("PLEASE ENTER THE NUMBERS ACCORDING TO YOUR CHOICE-");
+           System.out.println();
+           System.out.println("ENTER-");
+           System.out.println("1. FOR COCKTAIL DRESSES");
+           System.out.println("2. FOR DISCO DRESSES");
+           System.out.println("3. FOR STRAPLESS DRESSES");
+           num=sc.nextInt(); //asking for users choice
+           System.out.println();
+           if(num==1)
+           {
+               name[z]="Cocktail Dresses";
+               disc=2500-(0.25*2500);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.2500 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           if(num==2)
+           {
+               name[z]="Disco Dresses";
+               disc=2400-(0.25*2400);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.2400 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           if(num==3)
+           {
+               name[z]="Strapless Dresses";
+               disc=2300-(0.25*2300);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.2300 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           System.out.println("PLEASE CHECK YOUR INPUT!");
+           break;
+           default:
+           System.out.println("PLEASE CHECK YOUR INPUT !");
+        }
+    }//end of function women
+   public void Men()throws IOException
+   {
+       InputStreamReader ir=new InputStreamReader(System.in);
+       BufferedReader br=new BufferedReader(ir);
+       Scanner sc=new Scanner(System.in);
+       System.out.println();
+       System.out.println("WELCOME TO THE MEN'S CLOTHING SECTION !!!!!!");
+       System.out.println("WE PROVIDE A WIDE RANGE OF SELECTIONS !!!!!!!");
+       System.out.println("KINDLY ENTER THE NUMBERS AS GIVEN IN THE LIST !!!!!!!!");
+       System.out.println("ENTER-");
+       System.out.println();
+       System.out.println("1. FOR ETHNIC WEAR");
+       System.out.println("2. FOR CASUAL WEAR");
+       System.out.println("3. FOR FORMAL WEAR");
+       System.out.println("4. FOR WESTERN WEAR");
+       System.out.println("5. FOR PARTY WEAR");
+       System.out.println("WE ARE EXTREMELY DELIGHTED TO ANNOUNCE THAT-");
+       System.out.println("WE PROVIDE 20% DISCOUNT IN THE CASUAL WEAR SECTION AND 25% DISCOUNT ON ALL SECTIONS IN THE FORMAL WEAR!!");
+       System.out.println("PLEASE ENTER YOUR CHOICE!!");
+       int choice=sc.nextInt();
+       System.out.println();
+       switch(choice)
+       {
+           case 1:
+           System.out.println("THIS IS THE ETHNIC SECTION!!");
+           System.out.println("THE ETHNIC SECTION PROVIDES YOU WITH ITS OWN VATRIETIES.");
+           System.out.println("PLEASE ENTER THE NUMBERS ACCORDING TO YOUR CHOICE-");
+           System.out.println();
+           System.out.println("ENTER-");
+           System.out.println("1. FOR KURTAS");
+           System.out.println("2. FOR TRADITIONAL SHERWANIS");
+           System.out.println("3. FOR JODHPURI SUIT");
+           System.out.println("4. FOR KURTA PYJAMA");
+           int num=sc.nextInt(); //asking for users choice
+           System.out.println();
+           if(num==1)
+           {
+               name[z]="Kurtas";
+               price[z]=8500;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.8500");
+               cost=cost+8500;
+           }
+           else
+           if(num==2)
+           {
+               name[z]="Traditional Sherwanis";
+               price[z]=12000;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.12000");
+               cost=cost+12000;
+            }
+           else
+           if(num==3)
+           {
+               name[z]="Jodhpuri Suit";
+               price[z]=9000;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.9000");
+               cost=cost+9000;
+            }
+           else
+           if(num==4)
+           {
+               name[z]="Kurta Pyjama";
+               price[z]=8000;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.8000");
+               cost=cost+8000;
+           }
+           else
+           System.out.println("PLEASE CHECK YOUR INPUT!");
+           break;
+           case 2:
+           System.out.println("THIS IS THE CASUAL WEAR SECTION AND WE HAVE ALL THE LATEST DESIGNS!!");
+           System.out.println("THE CASUAL WEAR SECTION PROVIDES YOU WITH ITS OWN VATRIETIES.");
+           System.out.println("PLEASE ENTER THE NUMBERS ACCORDING TO YOUR CHOICE-");
+           System.out.println();
+           System.out.println("ENTER-");
+           System.out.println("1. FOR CASUAL PANTS");
+           System.out.println("2. FOR CASUAL SHIRTS");
+           System.out.println("3. FOR CASUAL T-SHIRTS");
+           System.out.println("4. FOR SWEATERS/JACKETS");
+           System.out.println("5. FOR SHORTS");
+           num=sc.nextInt(); //asking for users choice
+           System.out.println();
+           if(num==1)
+           {
+               name[z]="Casual Pants";
+               disc=2100-(0.20*2100);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.2100 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           if(num==2)
+           {
+               name[z]="Casual shirts";
+               disc=2500-(0.20*2500);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.2500 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           if(num==3)
+           {
+               name[z]="Casual T-shirts";
+               disc=2500-(0.20*2500);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.2500 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           if(num==4)
+           {
+               name[z]="Sweater/Jackets";
+               disc=1000-(0.20*1000);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.1000 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           if(num==5)
+           {
+               name[z]="Shorts";
+               disc=1100-(0.20*1100);
+               price[z]=disc;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.1100 BUT AFTER DISCOUNT IT IS Rs."+disc);
+               cost=cost+disc;
+           }
+           else
+           System.out.println("PLEASE CHECK YOUR INPUT!");
+           break;
+           case 3:
+           System.out.println("THIS IS THE FORMAL WEAR SECTION!!");
+           System.out.println("THE FORMAL WEAR SECTION PROVIDES YOU WITH ITS OWN VATRIETIES.");
+           System.out.println("PLEASE ENTER THE NUMBERS ACCORDING TO YOUR CHOICE-");
+           System.out.println();
+           System.out.println("ENTER-");
+           System.out.println("1. FOR FORMAL PANTS");
+           System.out.println("2. FOR FORMAL SHIRTS");
+           System.out.println("3. FOR FORMAL SUITS");
+           System.out.println("4. FOR FORMAL TUXEDOS");
+           System.out.println("5. FOR FORMAL COATS AND BLAZERS");
+            num=sc.nextInt(); //asking for users choice
+            System.out.println();
+           if(num==1)
+           {
+               name[z]="Formal Pants";
+               price[z]=1500;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.1500");
+               cost=cost+1500;
+           }
+           else
+           if(num==2)
+           {
+               name[z]="Formal Shirts";
+               price[z]=1300;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.1300");
+               cost=cost+1300;
+            }
+           else
+           if(num==3)
+           {
+               name[z]="Formal Suits";
+               price[z]=2800;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.2800");
+               cost=cost+2800;
+            }
+           else
+           if(num==4)
+           {
+               name[z]="Formal Tuxedos";
+               price[z]=3000;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.3000");
+               cost=cost+3000;
+           }
+           if(num==5)
+           {
+               name[z]="Formal Coats And Blazers";
+               price[z]=1500;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST OF YOUR CHOICE IS Rs.1500");
+               cost=cost+1500;
+           }
+           else
+           System.out.println("PLEASE CHECK YOUR INPUT!");
+           break;
+           case 4:
+           System.out.println("THIS IS THE WESTERN WEAR SECTION AND WE HAVE ALL THE LATEST DESIGNS!!");
+           System.out.println("THE WESTERN WEAR SECTION PROVIDES YOU WITH ITS OWN VATRIETIES.");
+           System.out.println("PLEASE ENTER THE NUMBERS ACCORDING TO YOUR CHOICE-");
+           System.out.println();
+           System.out.println("ENTER-");
+           System.out.println("1. FOR DENIM JEANS");
+           System.out.println("2. FOR WESTERN DESIGNED SHIRTS");
+           num=sc.nextInt(); //asking for users choice
+           System.out.println();
+           if(num==1)
+           {
+               name[z]="Denim Jeans";
+               price[z]=1500;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST FOR YOUR CHOICE IS Rs.1500");
+               cost=cost+1500;
+           }
+           else
+           if(num==2)
+           {
+               name[z]="Western Designed Shirts";
+               price[z]=1200;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST FOR YOUR CHOICE IS Rs.1200");
+               cost=cost+1200;
+           }
+           else
+           System.out.println("PLEASE CHECK YOUR INPUT!");
+           break;
+           case 5:
+           System.out.println("THIS IS THE PARTY WEAR SECTION AND WE HAVE ALL THE LATEST DESIGNS!!");
+           System.out.println("THE PARTY SECTION PROVIDES YOU WITH ITS OWN VATRIETIES.");
+           System.out.println("PLEASE ENTER THE NUMBERS ACCORDING TO YOUR CHOICE-");
+           System.out.println();
+           System.out.println("ENTER-");
+           System.out.println("1. FOR PARTY WEAR SUITS");
+           System.out.println("2. FOR FUNKY PARTY WEAR OUTFITS");
+           num=sc.nextInt(); //asking for users choice
+           System.out.println();
+           if(num==1)
+           {
+               name[z]="Party Wear Suits";
+               price[z]=3000;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST FOR YOUR CHOICE IS Rs.3000");
+               cost=cost+3000;
+           }
+           else
+           if(num==2)
+           {
+               name[z]="Funky Party Wear Outfits";
+               price[z]=3500;
+               System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+               System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+               size[z]=br.readLine();               
+               z++;
+               System.out.println("THE COST FOR YOUR CHOICE IS Rs.3500");
+               cost=cost+3500;
+           }
+           else
+           System.out.println("PLEASE CHECK YOUR INPUT!");
+           break;
+           default:
+           System.out.println("PLEASE CHECK YOUR INPUT !");
+        }
+    }//end of function men
+   public void Marriage()throws IOException
+   {
+       InputStreamReader ir=new InputStreamReader(System.in);
+       BufferedReader br=new BufferedReader(ir);
+       Scanner sc=new Scanner(System.in);
+       System.out.println();
+       System.out.println("WELCOME TO THE MARRIAGE WEAR SECTION!!!!!!");
+       System.out.println("THIS SECTION IS COMPLETELY DEDICATED TO ALL THOSE YOUNG COUPLES OUT THERE WHO HAVE DECIDED TO TIE THE KNOT!!!");
+       System.out.println("WE TRY TO MAKE IT SPECIAL BY PROVIDING A WIDE RANGE OF BRIDAL WEAR FOR THE BRIDES AND DESIGNER WEAR FOR THE GROOM TO CHOOSE FROM.");
+       System.out.println("SO PLEASE ENTER THE NUMBER THAT YOU WANT");
+       System.out.println("ENTER-");
+       System.out.println("1.FOR GOWNS");
+       System.out.println("2.FOR DESIGNER SAREES");
+       System.out.println("3.FOR DESIGNER SUITS");
+       System.out.println("4.FOR DESIGNER SHERWANIS");
+       int chwo=sc.nextInt();
+       System.out.println();
+       switch(chwo)
+       {
+           case 1:
+           name[z]="Gowns";
+           price[z]=10000;
+           System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+           System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+           size[z]=br.readLine();               
+           z++;
+           cost=cost+10000;
+           System.out.println("THE COST FOR YOUR PURCHASE IS Rs.10000");
+           break;
+           case 2:
+           name[z]="Designer Sarees";
+           price[z]=20000;
+           System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+           System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+           size[z]=br.readLine();               
+           z++;
+           cost=cost+20000;
+           System.out.println("THE COST FOR YOUR PURCHASE IS Rs.20000");
+           break;
+           case 3:
+           name[z]="Designer Suits";
+           price[z]=15000;
+           System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+           System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+           size[z]=br.readLine();               
+           z++;
+           cost=cost+15000;
+           System.out.println("THE COST FOR4 YOUR PURCHASE IS Rs.15000");
+           break;
+           case 4:
+           name[z]="Designer Sherwanis";
+           price[z]=13000;
+           System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+           System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+           size[z]=br.readLine();               
+           z++;
+           cost=cost+13000;
+           System.out.println("THE COST FOR YOUR PURCHASE IS Rs.13000");
+           break;
+           default:System.out.println("PLEASE CHECK YOUR INPUT");
+        }
+    }//end of function Marriage
+   public void Kids()throws IOException
+   {
+       InputStreamReader ir=new InputStreamReader(System.in);
+       BufferedReader br=new BufferedReader(ir);
+       Scanner sc=new Scanner(System.in);
+       System.out.println();
+       System.out.println("WELCOME TO THE KID'S CLOTHING SECTION !!!!");
+       System.out.println("WE PROVIDE A WIDE RANGE OF SELECTIONS OF CLOTHES FOR YOUR CHILDREN TO CHOOSE FROM");
+       System.out.println("WE HAVE PROVIDED CERTAIN AGE CATEGORIES FOR YOUR KIDS !!");
+       System.out.println("THE CATEGORIES ARE-");
+       System.out.println("1.0-12 MONTHS(INFANTS)");
+       System.out.println("2.1-6 YEARS");
+       System.out.println("3.7-12 YEARS");
+       System.out.println("4.8-15 YEARS");
+       System.out.println("PLEASE ENTER THE NUMBER OF YOUR CHOICE!");
+       int chwo=sc.nextInt();
+       System.out.println();
+       switch(chwo)
+       {
+           case 1:   
+           System.out.println("WELCOME TO THE INFANTS SECTION AND WE ARE VERY GLAD TO HELP YOU CHOOSE CLOTHES FOR YOUR TINY TOTS!!");
+           System.out.println("PLEASE ENTER THE GENDER OF THE BABY.LIKE MALE OR FEMALE");
+           String gender=sc.next();
+           System.out.println();
+           if(gender.equalsIgnoreCase("female"))
+           {
+               System.out.println("WE ARE VERY GLAD TO ANNOUNCE ALL THAT IS IN STORE FOR YOUR YOUNG BABY GIRL !!");
+               System.out.println("KINDLY LOOK AROUND AND CHOOSE THE CORRECT SIZE FOR YOUR DARLING!!");
+               System.out.println("PLEASE ENTER-");
+               System.out.println("1.FOR SKIRTS");
+               System.out.println("2.FOR T-SHIRTS");
+               System.out.println("3.FOR PLAIN FROCKS");
+               System.out.println("4.FOR FRILLED FROCKS");
+               int num=sc.nextInt();
+               System.out.println();
+               if(num==1)
+               {
+                   name[z]="Skirts";
+                   price[z]=400;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.400");
+                   cost=cost+400;
+                }
+               else
+               if(num==2)
+               {
+                   name[z]="T-shirts";
+                   price[z]=500;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.500");
+                   cost=cost+500;
+                }
+               else
+               if(num==3)
+               {
+                   name[z]="Plain Frocks";
+                   price[z]=700;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.700");
+                   cost=cost+700;
+                }
+                else
+               if(num==4)
+               {
+                   name[z]="Frilled Frocks";
+                   price[z]=800;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.800");
+                   cost=cost+800;
+                }
+                else
+                System.out.println("PLEASE CHECK YOUR INPUT");
+            }
+           else
+           if(gender.equalsIgnoreCase("male"))
+           {
+               System.out.println("WE ARE VERY GLAD TO ANNOUNCE ALL THAT IS IN STORE FOR YOUR YOUNG BABY boy !!");
+               System.out.println("KINDLY LOOK AROUND AND CHOOSE THE CORRECT SIZE FOR YOUR DARLING!!");
+               System.out.println("PLEASE ENTER-");
+               System.out.println("1.FOR PANTS");
+               System.out.println("2.FOR T-SHIRTS");
+               System.out.println("3.FOR TOPS");
+               System.out.println("4.FOR SHORTS");
+               int num=sc.nextInt();
+               System.out.println();
+               if(num==1)
+               {
+                   name[z]="Pants";
+                   price[z]=450;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.450");
+                   cost=cost+450;
+                }
+               else
+               if(num==2)
+               {
+                   name[z]="T-shirts";
+                   price[z]=500;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.500");
+                   cost=cost+500;
+                }
+               else
+               if(num==3)
+               {
+                   name[z]="Tops";
+                   price[z]=350;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.350");
+                   cost=cost+350;
+                }
+                else
+               if(num==4)
+               {
+                   name[z]="Shorts";
+                   price[z]=400;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.400");
+                   cost=cost+400;
+                }
+                else
+                System.out.println("PLEASE CHECK YOUR INPUT");
+            }
+           else
+           System.out.println("PLEASE CHECK YOUR INPUT");
+           break;
+           case 2:
+           System.out.println("WELCOME TO THE 1 TO 6 YEARS CATEGORY AND WE ARE VERY GLAD TO HELP YOU CHOOSE CLOTHES FOR YOUR LITLE ANGELS!!");
+           System.out.println("PLEASE ENTER THE GENDER OF THE BABY.LIKE MALE OR FEMALE");
+           gender=sc.next();
+           System.out.println();
+           if(gender.equalsIgnoreCase("female"))
+           {
+               System.out.println("WE ARE VERY GLAD TO ANNOUNCE ALL THAT IS IN STORE FOR YOUR YOUNG BABY GIRL !!");
+               System.out.println("KINDLY LOOK AROUND AND CHOOSE THE CORRECT SIZE FOR YOUR DARLING!!");
+               System.out.println("PLEASE ENTER-");
+               System.out.println("1.FOR SKIRTS");
+               System.out.println("2.FOR T-SHIRTS");
+               System.out.println("3.FOR PLAIN FROCKS");
+               System.out.println("4.FOR FRILLED FROCKS");
+               System.out.println("5.FOR SHORTS");
+               System.out.println("6.FOR PRETTY DRESSES");
+               System.out.println("7.FOR DUNGREES AND PANTS");
+               System.out.println("8.FOR GHAGRAS");
+               int num=sc.nextInt();
+               System.out.println();
+               if(num==1)
+               {
+                   name[z]="Skirts";
+                   price[z]=600;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.600");
+                   cost=cost+600;
+                }
+               else
+               if(num==2)
+               {
+                   name[z]="T-shirts";
+                   price[z]=700;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.700");
+                   cost=cost+700;
+                }
+               else
+               if(num==3)
+               {
+                   name[z]="Plain Frocks";
+                   price[z]=850;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.850");
+                   cost=cost+850;
+                }
+                else
+               if(num==4)
+               {
+                   name[z]="Frilled Frocks";
+                   price[z]=900;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.900");
+                   cost=cost+900;
+                }
+                else
+                if(num==5)
+               {
+                   name[z]="Shorts";
+                   price[z]=500;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.500");
+                   cost=cost+500;
+                }
+                else
+                if(num==6)
+               {
+                   name[z]="Pretty Dresses";
+                   price[z]=750;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.750");
+                   cost=cost+750;
+                }
+                else
+                if(num==7)
+               {
+                   name[z]="Dungrees and Pants";
+                   price[z]=1000;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.1000");
+                   cost=cost+1000;
+                }
+                else
+                if(num==8)
+               {
+                   name[z]="Ghagras";
+                   price[z]=900;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.900");
+                   cost=cost+900;
+                }
+                else
+                System.out.println("PLEASE CHECK YOUR INPUT");
+            }
+           else
+           if(gender.equalsIgnoreCase("male"))
+           {
+               System.out.println("WE ARE VERY GLAD TO ANNOUNCE ALL THAT IS IN STORE FOR YOUR YOUNG BABY BOY!!");
+               System.out.println("KINDLY LOOK AROUND AND CHOOSE THE CORRECT SIZE FOR YOUR DARLING!!");
+               System.out.println("PLEASE ENTER-");
+               System.out.println("1.FOR PANTS");
+               System.out.println("2.FOR T-SHIRTS");
+               System.out.println("3.FOR TOPS");
+               System.out.println("4.FOR SHORTS");
+               System.out.println("5.FOR TROUSERS");
+               System.out.println("6.FOR SMALL SHERWANIS");
+               int num=sc.nextInt();
+               System.out.println();
+               if(num==1)
+               {
+                   name[z]="Pants";
+                   price[z]=500;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.500");
+                   cost=cost+500;
+                }
+               else
+               if(num==2)
+               {
+                   name[z]="T-shirts";
+                   price[z]=550;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.550");
+                   cost=cost+550;
+                }
+               else
+               if(num==3)
+               {
+                   name[z]="Tops";
+                   price[z]=450;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.450");
+                   cost=cost+450;
+                }
+                else
+               if(num==4)
+               {
+                   name[z]="Shorts";
+                   price[z]=400;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.400");
+                   cost=cost+400;
+                }
+                else
+               if(num==5)
+               {
+                   name[z]="Trousers";
+                   price[z]=450;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.450");
+                   cost=cost+450;
+                }
+               if(num==6)
+               {
+                   name[z]="Small Sherwanis";
+                   price[z]=700;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.700");
+                   cost=cost+700;
+                }
+                else
+                System.out.println("PLEASE CHECK YOUR INPUT");
+            }
+           else
+           System.out.println("PLEASE CHECK YOUR INPUT");
+           break;
+           case 3:
+           System.out.println("WELCOME TO THE 7 TO 12 YEARS CATEGORY AND WE ARE VERY GLAD TO HELP YOU CHOOSE CLOTHES FOR YOUR LITLE ANGELS!!");
+           System.out.println("PLEASE ENTER THE GENDER OF THE BABY.LIKE MALE OR FEMALE");
+           gender=sc.next();
+           System.out.println();
+           if(gender.equalsIgnoreCase("female"))
+           {
+               System.out.println("WE ARE VERY GLAD TO ANNOUNCE ALL THAT IS IN STORE FOR YOUR YOUNG BABY GIRL !!");
+               System.out.println("KINDLY LOOK AROUND AND CHOOSE THE CORRECT SIZE FOR YOUR DARLING!!");
+               System.out.println("PLEASE ENTER-");
+               System.out.println("1.FOR SKIRTS");
+               System.out.println("2.FOR T-SHIRTS");
+               System.out.println("3.FOR SHORTS");
+               System.out.println("4.FOR PRETTY DRESSES");
+               System.out.println("5.FOR DUNGREES AND PANTS");
+               System.out.println("6.FOR GHAGRAS");
+               int num=sc.nextInt();
+               System.out.println();
+               if(num==1)
+               {
+                   name[z]="Skirts";
+                   price[z]=800;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.800");
+                   cost=cost+800;
+                }
+               else
+               if(num==2)
+               {
+                   name[z]="T-shirts";
+                   price[z]=750;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.750");
+                   cost=cost+750;
+                }
+               else
+               if(num==3)
+               {
+                   name[z]="Shorts";
+                   price[z]=600;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.600");
+                   cost=cost+600;
+                }
+               else
+               if(num==4)
+               {
+                   name[z]="Pretty Dresses";
+                   price[z]=800;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.800");
+                   cost=cost+800;
+                }
+               else
+               if(num==5)
+               {
+                   name[z]="Dungrees and Pants";
+                   price[z]=1100;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.1100");
+                   cost=cost+1100;
+                }
+               else
+               if(num==6)
+               {
+                   name[z]="Ghagras";
+                   price[z]=1000;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.1000");
+                   cost=cost+1000;
+                }
+                else
+                System.out.println("PLEASE CHECK YOUR INPUT");
+            }
+           else
+           if(gender.equalsIgnoreCase("male"))
+           {
+               System.out.println("WE ARE VERY GLAD TO ANNOUNCE ALL THAT IS IN STORE FOR YOUR YOUNG BABY BOY!!");
+               System.out.println("KINDLY LOOK AROUND AND CHOOSE THE CORRECT SIZE FOR YOUR DARLING!!");
+               System.out.println("PLEASE ENTER-");
+               System.out.println("1.FOR PANTS");
+               System.out.println("2.FOR T-SHIRTS");
+               System.out.println("3.FOR TOPS");
+               System.out.println("4.FOR SHORTS");
+               System.out.println("5.FOR TROUSERS");
+               System.out.println("6.FOR SMALL SHERWANIS");
+               int num=sc.nextInt();
+               System.out.println();
+               if(num==1)
+               {
+                   name[z]="Pants";
+                   price[z]=700;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.700");
+                   cost=cost+700;
+                }
+               else
+               if(num==2)
+               {
+                   name[z]="T-shirts";
+                   price[z]=650;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.650");
+                   cost=cost+650;
+                }
+               else
+               if(num==3)
+               {
+                   name[z]="Tops";
+                   price[z]=550;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.550");
+                   cost=cost+550;
+                }
+                else
+               if(num==4)
+               {
+                   name[z]="Shorts";
+                   price[z]=450;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.450");
+                   cost=cost+450;
+                }
+                else
+               if(num==5)
+               {
+                   name[z]="Trousers";
+                   price[z]=500;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.500");
+                   cost=cost+500;
+                }
+               if(num==6)
+               {
+                   name[z]="Small Sherwanis";
+                   price[z]=800;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.800");
+                   cost=cost+800;
+                }
+                else
+                System.out.println("PLEASE CHECK YOUR INPUT");
+            }
+           else
+           System.out.println("PLEASE CHECK YOUR INPUT");
+           break;
+           case 4:
+           System.out.println("WELCOME TO THE 13 TO 15 YEARS CATEGORY AND WE ARE VERY GLAD TO HELP YOU CHOOSE CLOTHES FOR YOUR LITLE ANGELS!!");
+           System.out.println("PLEASE ENTER THE GENDER OF THE BABY.LIKE MALE OR FEMALE");
+           gender=sc.next();
+           System.out.println();
+           if(gender.equalsIgnoreCase("female"))
+           {
+               System.out.println("WE ARE VERY GLAD TO ANNOUNCE ALL THAT IS IN STORE FOR YOUR YOUNG BABY GIRL !!");
+               System.out.println("KINDLY LOOK AROUND AND CHOOSE THE CORRECT SIZE FOR YOUR DARLING!!");
+               System.out.println("PLEASE ENTER-");
+               System.out.println("1.FOR SKIRTS");
+               System.out.println("2.FOR T-SHIRTS");
+               System.out.println("3.FOR SHORTS");
+               System.out.println("4.FOR PRETTY DRESSES");
+               System.out.println("5.FOR DUNGREES AND PANTS");
+               System.out.println("6.FOR GHAGRAS");
+               int num=sc.nextInt();
+               System.out.println();
+               if(num==1)
+               {
+                   name[z]="Skirts";
+                   price[z]=900;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.900");
+                   cost=cost+900;
+                }
+               else
+               if(num==2)
+               {
+                   name[z]="T-shirts";
+                   price[z]=850;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.850");
+                   cost=cost+850;
+                }
+               else
+               if(num==3)
+               {
+                   name[z]="Shorts";
+                   price[z]=650;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.650");
+                   cost=cost+650;
+                }
+               else
+               if(num==4)
+               {
+                   name[z]="Pretty Dresses";
+                   price[z]=850;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.850");
+                   cost=cost+850;
+                }
+               else
+               if(num==5)
+               {
+                   name[z]="Dungrees and Pants";
+                   price[z]=1250;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.1250");
+                   cost=cost+1250;
+                }
+               else
+               if(num==6)
+               {
+                   name[z]="Ghagras";
+                   price[z]=1100;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.1100");
+                   cost=cost+1100;
+                }
+                else
+                System.out.println("PLEASE CHECK YOUR INPUT");
+            }
+           else
+           if(gender.equalsIgnoreCase("male"))
+           {
+               System.out.println("WE ARE VERY GLAD TO ANNOUNCE ALL THAT IS IN STORE FOR YOUR YOUNG BABY BOY!!");
+               System.out.println("KINDLY LOOK AROUND AND CHOOSE THE CORRECT SIZE FOR YOUR DARLING!!");
+               System.out.println("PLEASE ENTER-");
+               System.out.println("1.FOR PANTS");
+               System.out.println("2.FOR T-SHIRTS");
+               System.out.println("3.FOR TOPS");
+               System.out.println("4.FOR SHORTS");
+               System.out.println("5.FOR TROUSERS");
+               System.out.println("6.FOR SHERWANIS");
+               int num=sc.nextInt();
+               System.out.println();
+               if(num==1)
+               {
+                   name[z]="Pants";
+                   price[z]=800;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.800");
+                   cost=cost+800;
+                }
+               else
+               if(num==2)
+               {
+                   name[z]="T-shirts";
+                   price[z]=750;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.750");
+                   cost=cost+750;
+                }
+               else
+               if(num==3)
+               {
+                   name[z]="Tops";
+                   price[z]=650;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.650");
+                   cost=cost+650;
+                }
+                else
+               if(num==4)
+               {
+                   name[z]="Shorts";
+                   price[z]=500;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.500");
+                   cost=cost+500;
+                }
+                else
+               if(num==5)
+               {
+                   name[z]="Trousers";
+                   price[z]=550;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.550");
+                   cost=cost+550;
+                }
+               if(num==6)
+               {
+                   name[z]="Sherwanis";
+                   price[z]=900;
+                   System.out.println("WE PROVIDE SIZES RANGING FROM SMALL(s),MEDIUM(m),LARGE(l) AND EXTRA LARGE(xl).");
+                   System.out.println("PLEASE ENTER YOUR SIZE(ACCORDING TO THE LETTERS GIVEN IN BRACKETS)");
+                   size[z]=br.readLine();               
+                   z++;
+                   System.out.println("THE COST FOR YOUR PURCHASE IS Rs.900");
+                   cost=cost+900;
+                }
+                else
+                System.out.println("PLEASE CHECK YOUR INPUT");
+            }
+           else
+           System.out.println("PLEASE CHECK YOUR INPUT");
+           break;
+           default:System.out.println("PLEASE CHECK YOUR INPUT");
+        }
+    }//end of function Kids
+   public void Accessories()
+   {
+       Scanner sc=new Scanner(System.in);
+       System.out.println();
+       System.out.println("WELCOME TO THE ACCESSORIES SECTION !!!!");
+       System.out.println("WE PROVIDE A WIDE RANGE OF SELECTIONS OF ACCESSORIES TO CHOOSE FROM !");
+       System.out.println("IF YOU ARE LOOKING FOR BASIC NECCESSITIES THEN YOU ARE IN THE RIGHT PLACE !!");
+       System.out.println("THE ACCESSORIES YOU ARE LOOKING FOR ARE LISTED BELOW");
+       System.out.println("PLEASE ENTER THE NUMBERS AS GIVEN");
+       System.out.println("PLEASE ENTER-");
+       System.out.println("1.FOR COSMETICS");
+       System.out.println("2.FOR BELTS FOR MEN");
+       System.out.println("3.FOR BANGLES");
+       System.out.println("4.FOR BRACELETS");
+       System.out.println("5.FOR CHAINS WITH PENDANTS");
+       System.out.println("6.FOR HAIRBANDS");
+       System.out.println("7.FOR CLIPS");
+       System.out.println("8.FOR HANDBANDS FOR MEN");
+       int chwo=sc.nextInt();
+       System.out.println();
+       switch(chwo)
+       {
+           case 1:
+           name[z]="Cosmetics";
+           disc=2000-(0.15*2000);
+           price[z]=disc;
+           size[z]="-";
+           z++;
+           System.out.println("WE PROVIDE 15% DISCOUNT FOR YOUR PURCHASE OF 2000");
+           cost=cost+disc;
+           System.out.println("THE COST OF YOUR PURCHASE AFTER DISCOUNT IS Rs."+disc);
+           break;
+           case 2:
+           name[z]="Belts For Men";
+           disc=600-(0.5*600);
+           price[z]=disc;
+           size[z]="-";
+           z++;
+           System.out.println("WE PROVIDE 5% DISCOUNT FOR YOUR PURCHASE OF 600");
+           cost=cost+disc;
+           System.out.println("THE COST OF YOUR PURCHASE AFTER DISCOUNT IS Rs."+disc);
+           break;
+           case 3:
+           name[z]="Bangles";
+           disc=300-(0.5*300);
+           price[z]=disc;
+           size[z]="-";
+           z++;
+           System.out.println("WE PROVIDE 5% DISCOUNT FOR YOUR PURCHASE OF 300");
+           cost=cost+disc;
+           System.out.println("THE COST OF YOUR PURCHASE AFTER DISCOUNT IS Rs."+disc);
+           break;
+           case 4:
+           name[z]="Bracelets";
+           disc=500-(0.5*500);
+           price[z]=disc;
+           size[z]="-";
+           z++;
+           System.out.println("WE PROVIDE 5% DISCOUNT FOR YOUR PURCHASE OF 500");
+           cost=cost+disc;
+           System.out.println("THE COST OF YOUR PURCHASE AFTER DISCOUNT IS Rs."+disc);
+           break;
+           case 5:
+           name[z]="Pendant Chains";
+           disc=700-(0.2*700);
+           price[z]=disc;
+           size[z]="-";
+           z++;
+           System.out.println("WE PROVIDE 2% DISCOUNT FOR YOUR PURCHASE OF 700");
+           cost=cost+disc;
+           System.out.println("THE COST OF YOUR PURCHASE AFTER DISCOUNT IS Rs."+disc);
+           break;
+           case 6:
+           name[z]="Hairbands";
+           price[z]=100;
+           size[z]="-";
+           z++;
+           cost=cost+100;
+           System.out.println("THE COST OF YOUR PURCHASE IS Rs.100");
+           break;
+           case 7:
+           name[z]="Clips";
+           price[z]=90;
+           size[z]="-";
+           z++;
+           cost=cost+90;
+           System.out.println("THE COST OF YOUR PURCHASE IS Rs.90");
+           break;
+           case 8:
+           name[z]="HandBands";
+           price[z]=100;
+           size[z]="-";
+           z++;
+           cost=cost+100;
+           System.out.println("THE COST OF YOUR PURCHASE IS Rs.100");
+           break;
+           default:System.out.println("PLEASE CHECK YOUR INPUT");
+        }
+    }//end of function Accessories
+   public void Shoes()throws IOException
+   {
+       InputStreamReader ir=new InputStreamReader(System.in);
+       BufferedReader br=new BufferedReader(ir);
+       Scanner sc=new Scanner(System.in);
+       System.out.println();
+       System.out.println("WELCOME TO THE SHOES SECTION !!!!");
+       System.out.println("WE PROVIDE A WIDE RANGE OF SHOES FOR ALL THOSE SHOE LOVERS OUT THERE");
+       System.out.println("PLEASE ENTER IF YOU WANT MEN FOOTWEAR OR WOMAN FOOTWEAR");
+       System.out.println("ENTER 1 FOR MEN'S FOOTWEAR");
+       System.out.println("ENTER 2 FOR WOMEN'S FOOTWEAR");
+       int chwo=sc.nextInt();
+       System.out.println();
+       switch(chwo)
+       {
+           case 1:
+           System.out.println("WELCOME TO THE MEN'S FOOTWEAR SECTION !!!");
+           System.out.println("PLEASE ENTER-");
+           System.out.println("1.FOR RUNNING SHOES");
+           System.out.println("2.FOR FORMAL SHOES");
+           System.out.println("3.FOR BOOTS");
+           System.out.println("4.FOR LEATHER SHOES");
+           System.out.println("5.FOR ETHNIC FOOTWEAR");
+           System.out.println("6.FOR CASUAL SHOES");
+           int num=sc.nextInt();
+           System.out.println();
+           if(num==1)
+           {
+               name[z]="Running Shoes";
+               price[z]=4500;
+               System.out.println("ENTER THE SIZE OF THE SHOE IN 'UK' MEASURE");
+               size[z]=br.readLine();
+               z++;
+               System.out.println("THE COST OF YOUR PURCHASE IS Rs.4500");
+               cost=cost+4500;
+            }
+           else
+           if(num==2)
+           {
+               name[z]="Formal Shoes";
+               price[z]=4000;
+               System.out.println("ENTER THE SIZE OF THE SHOE IN 'UK' MEASURE");
+               size[z]=br.readLine();
+               z++;
+               System.out.println("THE COST OF YOUR PURCHASE IS Rs.4000");
+               cost=cost+4000;
+            }
+           else
+           if(num==3)
+           {
+               name[z]="Boots";
+               price[z]=3500;
+               System.out.println("ENTER THE SIZE OF THE SHOE IN 'UK' MEASURE");
+               size[z]=br.readLine();
+               z++;
+               System.out.println("THE COST OF YOUR PURCHASE IS Rs.3500");
+               cost=cost+3500;
+            }
+           else
+           if(num==4)
+           {
+               name[z]="Leather Shoes";
+               price[z]=5000;
+               System.out.println("ENTER THE SIZE OF THE SHOE IN 'UK' MEASURE");
+               size[z]=br.readLine();
+               z++;
+               System.out.println("THE COST OF YOUR PURCHASE IS Rs.5000");
+               cost=cost+5000;
+            }
+           else
+           if(num==5)
+           {
+               name[z]="Ethnic Footwear";
+               price[z]=3000;
+               System.out.println("ENTER THE SIZE OF THE SHOE IN 'UK' MEASURE");
+               size[z]=br.readLine();
+               z++;
+               System.out.println("THE COST OF YOUR PURCHASE IS Rs.3000");
+               cost=cost+3000;
+            }
+           else
+           if(num==6)
+           {
+               name[z]="Casual Shoes";
+               price[z]=3500;
+               System.out.println("ENTER THE SIZE OF THE SHOE IN 'UK' MEASURE");
+               size[z]=br.readLine();
+               z++;
+               System.out.println("THE COST OF YOUR PURCHASE IS Rs.3500");
+               cost=cost+3500;
+            }
+           else
+           System.out.println("PLEASE CHECK YOUR INPUT");
+           break;
+           case 2:
+           System.out.println("WELCOME TO THE WOMEN'S FOOTWEAR SECTION !!!");
+           System.out.println("PLEASE ENTER-");
+           System.out.println("1.FOR RUNNING SHOES");
+           System.out.println("2.FOR NORMAL SHOES");
+           System.out.println("3.FOR BOOTS");
+           System.out.println("4.FOR SANDALS");
+           System.out.println("5.FOR STILLETOS");
+           System.out.println("6.FOR MID HEELS");
+           System.out.println("7.FOR HIGH HEELS");
+           num=sc.nextInt();
+           System.out.println();
+           if(num==1)
+           {
+               name[z]="Running Shoes";
+               price[z]=4000;
+               System.out.println("ENTER THE SIZE OF THE SHOE IN 'UK' MEASURE");
+               size[z]=br.readLine();
+               z++;
+               System.out.println("THE COST OF YOUR PURCHASE IS Rs.4000");
+               cost=cost+4000;
+            }
+           else
+           if(num==2)
+           {
+               name[z]="Normal Shoes";
+               price[z]=3500;
+               System.out.println("ENTER THE SIZE OF THE SHOE IN 'UK' MEASURE");
+               size[z]=br.readLine();
+               z++;
+               System.out.println("THE COST OF YOUR PURCHASE IS Rs.3500");
+               cost=cost+3500;
+            }
+           else
+           if(num==3)
+           {
+               name[z]="Boots";
+               price[z]=3500;
+               System.out.println("ENTER THE SIZE OF THE SHOE IN 'UK' MEASURE");
+               size[z]=br.readLine();
+               z++;
+               System.out.println("THE COST OF YOUR PURCHASE IS Rs.3500");
+               cost=cost+3500;
+            }
+           else
+           if(num==4)
+           {
+               name[z]="Sandals";
+               price[z]=2000;
+               System.out.println("ENTER THE SIZE OF THE SHOE IN 'UK' MEASURE");
+               size[z]=br.readLine();
+               z++;
+               System.out.println("THE COST OF YOUR PURCHASE IS Rs.2000");
+               cost=cost+2000;
+            }
+           else
+           if(num==5)
+           {
+               name[z]="Stilletos";
+               price[z]=4500;
+               System.out.println("ENTER THE SIZE OF THE SHOE IN 'UK' MEASURE");
+               size[z]=br.readLine();
+               z++;
+               System.out.println("THE COST OF YOUR PURCHASE IS Rs.4500");
+               cost=cost+4500;
+            }
+           else
+           if(num==6)
+           {
+               name[z]="Mid Heels";
+               price[z]=3500;
+               System.out.println("ENTER THE SIZE OF THE SHOE IN 'UK' MEASURE");
+               size[z]=br.readLine();
+               z++;
+               System.out.println("THE COST OF YOUR PURCHASE IS Rs.3500");
+               cost=cost+3500;
+            }
+           else
+           if(num==7)
+           {
+               name[z]="High Heels";
+               price[z]=4000;
+               System.out.println("ENTER THE SIZE OF THE SHOE IN 'UK' MEASURE");
+               size[z]=br.readLine();
+               z++;
+               System.out.println("THE COST OF YOUR PURCHASE IS Rs.4000");
+               cost=cost+4000;
+            }
+           else
+           System.out.println("PLEASE CHECK YOUR INPUT");
+           break;
+           default:System.out.println("PLEASE CHECK YOUR INPUT");
+        }
+    }//end of function Shoes
+}
+
+     
+       
+    
+    
+           
+             
+               
+           
+              
+       
+           
+           
+            
+           
+          
+
+              
+             
+           
+                 
+           
+             
+       
